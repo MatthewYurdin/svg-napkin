@@ -1,16 +1,18 @@
 
 //TODO add fill-color property for shapes
 var Svgs = {
-  "soccer":{"Dim":{"Width":250,"Height":250},"Title":"Soccer Results by Fan Interest","Desc":"This illustration shows something along with something else.","Special":null,"Name":"test-group",
+  "soccer":{"Dim":{"Width":500,"Height":500},"Title":"Soccer Results by Fan Interest","Desc":"This illustration shows something along with something else.","Special":null,"Name":"test-group",
 	"Sections":
 	 [{"Dim":{"Width":250,"Height":250},"Name":"container-1","Translate":null, "Description":"Loren Ipsum bla bla bla",
 	    "Content":[
-	    	{"Purpose":"Text","Size":null,"X":125,"Y":30,"Alignment":"center","Color":"Black","textString":"START WITH A BLANK PAGE","Special":null,"Name":"my-text"},
+	    	{"Purpose":"Text","Size":null,"X":10,"Y":20,"Alignment":"left","Color":"Black","textString":"DOES THIS LOOK LIKE MY WRITING?","Special":null,"Name":"my-text"},
+	    	{"Purpose":"Line","X1":60,"Y1":25,"X2":60,"Y2":225,"Color":"Black","Special":null,"Name":"axis-line-1"},
+	    	{"Purpose":"Line","X1":60,"Y1":225,"X2":225,"Y2":225,"Color":"Black","Special":null,"Name":"axis-line-2"},
 	    	{"Purpose":"Symbol","Type":"Circle","X":125,"Y":175,"Width":10,"Height":10,"Color":"Blue","Special":null,"Name":"circle-1"},
-	    	{"Purpose":"Rectangle","X":200,"Y":200,"Width":20,"Height":100,"Color":"Red","Special":null,"Name":"rect-1"},
-	    	{"Purpose":"Line","X1":125,"Y1":175,"X2":10,"Y2":10,"Color":"Purple","Special":null,"Name":"line-1"},
-	    	{"Purpose":"Polygon","Coordinates":[[10,100],[100,100],[65,20]],"Color":"Orange","Special":null,"Name":"triangle-shape"},
-	    	{"Purpose":"Symbol","Type":"Square","X":280,"Y":35,"Width":20,"Height":20,"Color":"Green","Special":null,"Name":"square-1"},
+	    	{"Purpose":"Symbol","Type":"Circle","X":200,"Y":50,"Width":10,"Height":10,"Color":"Blue","Special":null,"Name":"circle-2"},
+	    	{"Purpose":"Polygon","Coordinates":[[10,240],[10,10],[240,10]],"Color":"Orange","Special":null,"Name":"triangle-shape"},
+	    	{"Purpose":"Symbol","Type":"Square","X":200,"Y":35,"Width":20,"Height":20,"Color":"Red","Special":null,"Name":"square-1"},
+	    	{"Purpose":"Symbol","Type":"Square","X":55,"Y":180,"Width":20,"Height":20,"Corlor":"Red","Special":null,"Name":"square-2"}
 
 	    ]
 	   }

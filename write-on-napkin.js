@@ -44,7 +44,7 @@ function buildHTML(name){
 function drawText(objRef){
 	var _elements_ = "<path stroke='" + Colors[objRef.Color] + "' stroke-width='2' stroke-linecap='round' fill='none'";
 	if (objRef.Name) { _elements_ += " id='" + objRef.Name + "' "; }
-	_elements_ += "d='" + pathify(objRef.X, objRef.Y, objRef.textString, objRef.Alignment) + "'/>"; 
+	_elements_ += "transform='scale(0.7)' d='" + pathify(objRef.X, objRef.Y, objRef.textString, objRef.Alignment) + "'/>"; 
 	return _elements_;
 }
 
@@ -60,18 +60,18 @@ function drawSymbol(objRef){
 		coordinates.push([(objRef.X+objRef.Width/2),(objRef.Y-objRef.Height/2)]);
 		coordinates.push([(objRef.X+objRef.Width/2),(objRef.Y+objRef.Height/2)]);
 		coordinates.push([(objRef.X-objRef.Width/2),(objRef.Y+objRef.Height/2)]);
-		coordinates.push([(objRef.X-objRef.Width/2),(objRef.Y-objRef.Height/2)]);
+		
 		_elements_ += "d='";
 		for (var coordinate = 0; coordinate < coordinates.length; coordinate++){
 			_elements_ += "M" + coordinates[coordinate][0] + "," + coordinates[coordinate][1] + " C";  
-			if (coordinate==(coordinates.length-1)){
+			if (coordinate==3){
 				controlPoint_1 = controlPoint(coordinates[coordinate][0],coordinates[coordinate][1],coordinates[0][0],coordinates[0][1]);
 				controlPoint_2 = controlPoint(coordinates[coordinate][0],coordinates[coordinate][1],coordinates[0][0],coordinates[0][1]);
 				_elements_ += controlPoint_1 + " " + controlPoint_2 + " " + coordinates[0][0] + " " + coordinates[0][1] + " ";
 			} else {
 				controlPoint_1 = controlPoint(coordinates[coordinate][0],coordinates[coordinate][1],coordinates[coordinate+1][0],coordinates[coordinate+1][1]);
 				controlPoint_2 = controlPoint(coordinates[coordinate][0],coordinates[coordinate][1],coordinates[coordinate+1][0],coordinates[coordinate+1][1]);
-				_elements_ += controlPoint_1 + " " + controlPoint_2 + " " + coordinates[coordinate+1][0] + " " + coordinates[coordinate+1][1] + " ";
+				_elements_ += controlPoint_1 + " " + controlPoint_2 + " " + coordinates[coordinate+1][0] + "," + coordinates[coordinate+1][1] + " ";
 			}
 		}
 		 _elements_ += "'/>";
@@ -150,7 +150,7 @@ function pathify(x, y, text, align) {
 	if (align=="center"){
 		pathPointerX-=(stretch/2);
 	}
-	else if (position=='right') {
+	if (align=='right') {
 		pathPointerX-=stretch;
 	}
 	for (var i = 0; i < text.length; i++ ) {
@@ -161,8 +161,8 @@ function pathify(x, y, text, align) {
 			pathPointerX += parseInt(Hand.Data[charCode][0]);
 			//why do I adjst pathPointerY?
 			pathPointerY = y + parseInt(Hand.Data[charCode][1]);
-			d += "M" + pathPointerX.toFixed(2) + " " + pathPointerY.toFixed(2) + " " + Hand.Data[charCode][1];
-			pathPointerX += parseInt(Hand.Data[charCode][1]);
+			d += "M" + pathPointerX.toFixed(2) + "," + pathPointerY.toFixed(2) + " " + Hand.Data[charCode][3];
+			pathPointerX += parseInt(Hand.Data[charCode][2]);
 		}
 	}
 	return d;
@@ -182,6 +182,21 @@ function controlPoint(startX, startY, endX, endY) {
 		transX += ((maxAdjust/2) - (Math.floor(Math.random()*maxAdjust)));
 	}
 	var pointString = " " + transX.toFixed(2) + " " + transY.toFixed(2);
+	return pointString;
+}
+
+function controlPointSmall(startX, startY, endX, endY) {	
+	var trans=Math.floor(Math.random()*10);
+	var transX = startX + ((endX - startX)*(trans/100));
+	var transY = startY + ((endY - startY)*(trans/100));
+	var dist = Math.sqrt(((endX - startX)*(endX - startX))+((endY - startY)*(endY - startY)));
+	var maxAdjust = Math.log(dist * dist);
+	if ((Math.abs(endX - startX)) > (Math.abs(endY - startY))) 
+		transY += ((maxAdjust/2) - (Math.floor(Math.random()*maxAdjust)));
+	else {
+		transX += ((maxAdjust/2) - (Math.floor(Math.random()*maxAdjust)));
+	}
+	var pointString = " " + transX.toFixed(2) + "," + transY.toFixed(2);
 	return pointString;
 }
 
