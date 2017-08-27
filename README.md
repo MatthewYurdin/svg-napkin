@@ -2,7 +2,7 @@
 
 Nothing fancy here. Just a few functions for generating SVG elements that appear to be *drawn by hand* in pen, including lines, circles, polygons, and text (in my handwriting). The colors and other styling are meant to imitate the look of a back-of-the-napkin sketch. Right now the functions are very similar to those in [svg-whiteboard](https://github.com/TripleDataArts/svg-whiteboard), but I expect them to diverge as they're developed.
 
-## Installation
+## Quick Start
 Download `napkin.js` and reference it in an HTML file:
 
 ```html
@@ -11,7 +11,8 @@ Download `napkin.js` and reference it in an HTML file:
     <script type="text/javascript" src="napkin.js"></script>
   </head>
   <body>
-    Open your console and try out functions from napkin.js. Copy and paste the output into your text editor and you've got an SVG.
+    Open your console and try out functions from napkin.js.
+    Copy and paste the output into your text editor and you've got an SVG.
   </body>
 </html>
 ```
@@ -45,9 +46,9 @@ The `title` parameter is used in the SVG (and HTML)`<title>` element. It is not,
 
 **CIRCLES**
 
-`napkin.draw_circle(cx, cy, r)`
+`napkin.draw_circle(cx, cy, r, whiteout = false)`
 
-`cx` and `cy` are the coordinates of the center of the circle and `r` is the radius.
+`cx` and `cy` are the coordinates of the center of the circle and `r` is the radius. `whiteout` fills a circle and a small margin around it with the background color.
 
 **TEXT**
 
@@ -60,7 +61,4 @@ So far, the characters that can be used in `text` are: ABCDEFGHIJKLMNOPQRSTUVWXZ
 ## TODOs
 
 - Add text-size attribute
-- Add text-align attribute
-- Add fill option for circles and polygons
-- Add function for handling SVG Symbol elements
-- Add helper functions for drawing arrows and axes
+- Add text-align attributes
