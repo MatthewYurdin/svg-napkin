@@ -1,6 +1,6 @@
 # SVG Napkin Illustration Helper
 
-Nothing fancy here. Just a few functions for generating SVG elements that appear to be *drawn by hand* in pen, including lines, circles, polygons, and text (in my own handwriting). The colors and other styling are meant to imitate the look of a back-of-the-napkin sketch. Right now the functions are very similar to those in [svg-whiteboard](https://github.com/TripleDataArts/svg-whiteboard), but I expect them to diverge as they're developed.
+Nothing fancy here. Just a few functions for generating SVG elements that appear to be *drawn by hand* in pen, including lines, circles, polygons, and text (in my own handwriting). The colors and other styling are meant to imitate the look of a back-of-the-napkin sketch. Right now the functions are very similar to those in [svg-whiteboard](https://github.com/TripleDataArts/svg-whiteboard), but I expect them to diverge a bit as they're developed.
 
 ## Quick Start
 Download [`napkin.js`](https://github.com/TripleDataArts/svg-napkin/edit/master/napkin.js) and reference it in an HTML file:
@@ -64,7 +64,7 @@ The pointy end goes at `endX, endY`.
 
 `napkin.draw_dot(x, y)`
 
-`x` and `y` are the coordinates of the center of the dot, which is between 1.1 and 1.8 pixels in diameter.
+`x` and `y` are the coordinates of the center of the dot, which is between 1.1 and 1.8 pixels in radius.
 
 **CIRCLES**
 
@@ -76,9 +76,14 @@ The pointy end goes at `endX, endY`.
 
 `napkin.draw_text(x, y, text)`
 
-`x` and `y` indicate the position of the text, which is left-aligned. Unlike regular SVG text, `y` is aligned with the top of the text. There is presently no text-size attribute; `draw-text()` make big text (35 pixels in height). Larger or smaller text can be achieved by placing the text in a `<g>` element with a `transform='scale()'` value. 
+`x` and `y` indicate the position of the text, which is left-aligned. Unlike regular SVG text, `y` is aligned with the top of the text. There is presently no text-size attribute; `draw-text()` makes only big text (35 pixels in height). Larger or smaller text can be achieved by placing the `<path class='text'...>` element in a `<g>` element with a `transform='scale()'` value. 
 
-So far, the characters that can be used in `text` are: ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuv1234567890',-&.:"()+$?!/
+So far, the characters that can be used in `draw_text()` aren't quite a whole keyboard's worth. The supported characters are:
+
+- ABCDEFGHIJKLMNOPQRSTUVWXZ
+- abcdefghijklmnopqrstuvwxyz
+- 1234567890
+- ',-&.:"()+$?!/
 
 ## TODOs
 
