@@ -1,4 +1,9 @@
 // napkin-style SVG illustrations
+// TODO: 
+//        add draw_curve functions, 
+//        make napkin.js 0.1.1 cheat sheet
+// module
+// -export: svg_wrapper, html_wrapper, draw_text, draw_line, draw_arrow, draw_polygon, draw_circle
 
 var napkin = (function() {
   'use strict';
@@ -38,7 +43,7 @@ var napkin = (function() {
     }
     else {
       let c = control_points(jx1, jy1, jx2, jy2);
-      return ("M" + jx1 + " " + jy1 + "C" + c.cp1.x + " " + c.cp1.y + "," + c.cp2.x + " " + c.cp2.y + "," + jx2 + " " + jy2);
+      return ("M" + jx1 + " " + jy1 + "C" + c.cp1.x + " " + c.cp1.y + "," + c.cp2.x + " " + c.cp2.y + "," + jx2 + " " + jy2);  
     }
   }
 
@@ -164,7 +169,8 @@ var napkin = (function() {
   }
 
   var random_between = function(a, b){
-    return a + (Math.random() * (b - a));
+    let r = a + (Math.random() * (b - a));
+    return r.toFixed(2);
   }
 
   var control_points = function(startX, startY, endX, endY){
@@ -178,7 +184,7 @@ var napkin = (function() {
       t = sign * random_between((max_t/2), max_t);
       points.cp1.x = Math.ceil((startX + (endX - startX) * 0.25) + t);
       t = sign * random_between((max_t/2), max_t);
-      points.cp1.y = Math.ceil((startY + (endY - startY) * 0.25) + t + 2);
+      points.cp1.y = Math.ceil((startY + (endY - startY) * 0.25) + t + 2); 
     } else {
       t = sign * random_between((max_t/2), max_t);
       points.cp1.x = Math.ceil((startX + (endX - startX) * 0.25) + t + 2);
@@ -191,7 +197,7 @@ var napkin = (function() {
       t = sign * random_between((max_t/2), max_t);
       points.cp2.x = Math.ceil((startX + (endX - startX) * 0.75) + t);
       t = sign * random_between((max_t/2), max_t);
-      points.cp2.y = Math.ceil((startY + (endY - startY) * 0.75) + t + 2);
+      points.cp2.y = Math.ceil((startY + (endY - startY) * 0.75) + t + 2); 
     } else {
       t = sign * random_between((max_t/2), max_t);
       points.cp2.x = Math.ceil((startX + (endX - startX) * 0.75) + t + 2);
@@ -211,7 +217,7 @@ var napkin = (function() {
       t = sign * random_between((max_t/2), max_t);
       point.x = Math.ceil((startX + (endX - startX) * random_between(0.4, 0.6)) + t);
       t = sign * random_between((max_t/2), max_t);
-      point.y = Math.ceil((startY + (endY - startY) * random_between(0.4, 0.6)) + t + 1);
+      point.y = Math.ceil((startY + (endY - startY) * random_between(0.4, 0.6)) + t + 1); 
     } else {
       t = sign * random_between((max_t/2), max_t);
       point.x = Math.ceil((startX + (endX - startX) * random_between(0.4, 0.6)) + t + 1);
@@ -265,7 +271,7 @@ var napkin = (function() {
     
     for (var i = (n - 2); i >= 0; i--){
       p1[i] = (r[i] - c[i] * p1[i+1]) / b[i];
-    }
+    }  
     
     /*we have p1, now compute p2*/
     for (var i = 0; i < (n - 1); i++){
@@ -293,7 +299,7 @@ var napkin = (function() {
       return empty_svg(width, height, color, title);
     },
   
-    html_wrapper: function(width, height, color, title = "A Napkin.js SVG Illustration"){
+    html_wrapper: function(width, height, color, title = "A napkin.js SVG Illustration"){
       return "<html><head><title>" + title + "</title></head><body><center>" + empty_svg(width, height, color, title) + "</center></body></html>";
     },
   
@@ -349,7 +355,7 @@ var napkin = (function() {
     },
     
     draw_dot: function(x, y){
-      return "<g class='dot' stroke-width='3' transform='rotate(" + Math.floor(random_between(10, 350)) + " " + x.toFixed(2) + " " + y.toFixed(2) + ")'><ellipse rx='1.3' ry='1.7' cx='" +  x.toFixed(2) + "' cy='" + y.toFixed(2) + "'/></g>";
+      return "<g class='dot' stroke-width='3' transform='rotate(" + Math.floor(random_between(10, 350)) + " " + x.toFixed(2) + " " + y.toFixed(2) + ")'><ellipse rx='" + random_between(1.1, 1.5) + "' ry='" + random_between(1.3, 1.8) + "' cx='" +  x.toFixed(2) + "' cy='" + y.toFixed(2) + "'/></g>";
     },
 
     draw_text: function(x, y, text){
