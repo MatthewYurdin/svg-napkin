@@ -16,7 +16,9 @@ Download [`napkin.js`](https://github.com/TripleDataArts/svg-napkin/edit/master/
   </body>
 </html>
 ```
-![Cheat Sheet](https://github.com/TripleDataArts/svg-napkin/edit/master/napkin_cheat_sheet.png)
+
+![text function ref](napkin_cheat_sheet.png)
+Format: ![PNG image of reference]('https://github.com/TripleDataArts/svg-napkin/master/napkin_cheat_sheet.png')
 
 ### Wrapper Functions
 There are two functions for generating either a SVG or HTML wrapper for whatever SVG elements you make with the **Element Functions**.
