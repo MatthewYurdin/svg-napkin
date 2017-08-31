@@ -25,7 +25,7 @@ var napkin = (function() {
   // Element-generating functions
   
   var empty_svg = function(width = 1000, height = 700, color = "Blue", title = "A napkin.js SVG Illustration"){
-      return "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:html='http://www.w3.org/1999/xhtml' width='100%' height='100%' viewBox='0,0," + width + "," + height + "' preserveAspectRatio='xMinYMin meet'><defs><title>" + title + "</title></defs><g id='standard-attributes' stroke='" + SETTINGS.COLORS[color] + "' stroke-width='" + SETTINGS.MARKER_THICKNESS + "' stroke-linecap='round' fill='none'>\n\n" + "<!-- Here's where your SVG elements go -->\n\n</g></svg>";
+      return "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:html='http://www.w3.org/1999/xhtml' width='100%' height='100%' viewBox='0,0," + width + "," + height + "' preserveAspectRatio='xMinYMin meet'>\n\t<defs>\n\t\t<title>" + title + "</title>\n\t</defs>\n\t<g id='standard-attributes' stroke='" + SETTINGS.COLORS[color] + "' stroke-width='" + SETTINGS.MARKER_THICKNESS + "' stroke-linecap='round' fill='none'>\n\n" + "\t\t<!-- Here's where your SVG elements go -->\n\n\t</g>\n</svg>";
   };
 
   var line = function(x1, y1, x2, y2, jitter1 = false, jitter2 = false){
@@ -80,7 +80,10 @@ var napkin = (function() {
 	
 	  for (var i = 0; i < text.length; i++ ) {
 		  charCode=text.charCodeAt(i);
-		  if (charCode == 32) {
+		  if (("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',-&.:'()+$?!/".indexOf(text[i])) === -1 & ('"'.indexOf(text[i]) === -1)){
+        charCode = 32;
+      }
+      if (charCode == 32) {
 			  pathPointerX += 25; // moves the pointer 25 pixels right if character i is space
 		  } else {
 			  pathPointerX += parseInt(SETTINGS.HAND.DATA[charCode][0]);
